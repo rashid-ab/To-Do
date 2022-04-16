@@ -3,7 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 
 const List:FC=({title}) => {
-
+ const [isSelected,setisSelected]=useState(false)
+ const setSelection = () =>{}
   return (
     <View style={styles.container}>
       <View style={styles.wrapContainer}>
