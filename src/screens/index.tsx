@@ -1,13 +1,23 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import List from '../components/list'
-export default function App() {
+import { useSelector } from 'react-redux';
+
+export default function App({navigation}) {
+  const se =useSelector(state=>state.task)
+  console.log('se',se)
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.wrapContainer}>
-        <List title="Completed Tasks"/>
-        <List title="Pending Tasks"/>
+        <ScrollView >
+              <List />
+        </ScrollView>
       </View>
-    </ScrollView>
+      <View style={styles.buttonView}>
+        <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('Add Task')}}>
+          <Text style={styles.buttonText}>Add Task</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
 
@@ -19,7 +29,22 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
   },
   wrapContainer:{
+    flex:.95,
+    padding:10
+  },
+  buttonView:{
+    flexDirection:'row',
+  },
+  button:{
     flex:1,
-    padding:20
+    marginHorizontal:20,
+    paddingVertical:15,
+    borderRadius:15,
+    backgroundColor:'#5CBC75',
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  buttonText:{
+    color:'#fcfcfc'
   }
 });
