@@ -5,23 +5,21 @@ import { useDispatch,useSelector } from "react-redux";
 import {ADD_TASK} from '../redux/action'
 
 const List:FC=() => {
- const [isPendingSelected,setisPendingSelected]=useState(true)
- const [isSelected,setisSelected]=useState({})
- const dispatch = useDispatch();
+  const [isPendingSelected,setisPendingSelected]=useState(true)
+  const dispatch = useDispatch();
   const tasks = useSelector(state => state.task)
-  console.log('tasks',tasks)
- const setSelection = (index) =>{
-  //  setisSelected(!isSelected)
-    // dispatch({
-    //   type:ADD_TASK,
-    //   payload:
-    // })
-    console.log(index)
- }
+  const setSelection = (index) =>{
+      tasks[index].status=true;
+      dispatch({
+        type:ADD_TASK,
+        payload:tasks
+      })
+      console.log(tasks[index])
+  }
   return (
     <View style={styles.container}>
       <View style={styles.wrapContainer}>
-        <Text style={[styles.title,{marginBottom:40}]}>Completed Tasks</Text>
+        <Text style={[styles.title,{marginBottom:tasks.length==0?40:tasks[0].status?0:40}]}>Completed Tasks</Text>
         {tasks.map((item)=>(
           item.status &&
           <View style={[styles.listitem]}>
@@ -41,7 +39,7 @@ const List:FC=() => {
           !item.status &&
           <View style={styles.listitem}>
               <Checkbox
-                  value={isSelected}
+                  // value={isSelected}
                   color='#4630EB'
                   onValueChange={()=>{setSelection(index)}}
                   style={styles.checkbox}
@@ -70,7 +68,7 @@ const styles = StyleSheet.create({
   },
   listitem:{
     flexDirection: "row",
-    marginVertical: 20,
+    marginVertical: 10,
   },
   checkbox: {
     alignSelf: "center",

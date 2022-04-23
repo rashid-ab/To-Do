@@ -5,14 +5,12 @@ const INITIAL_STATE = {
 const reducer = (state = INITIAL_STATE, action) => {
   switch(action.type){
     case ADD_TASK:
-      // console.log('state',state)
-
       return {
         ...state,
         task:state.task.map(
           (content, i) => i === 1 ? {...content, text: action.payload}
                                   : content
-      )
+        )
       }
     default:
       return {...state}

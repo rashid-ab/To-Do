@@ -14,19 +14,14 @@ export default function Create({navigation}) {
        setInputerror(true);
        return;
     }
-    let task_array=tasks
-    console.log(task_array)
-    task_array = tasks.push({
-      title:task,
-      status:false,
+    tasks.push({
+        title:task,
+        status:false,
     })
-    let task_arra=tasks
-    console.log(task_arra)
     dispatch({
       type:ADD_TASK,
-      payload:task_arra
+      payload:tasks
     })
-
     setInputerror(false);
     setTask('')
     navigation.goBack()
@@ -72,7 +67,6 @@ const styles = StyleSheet.create({
   },
   wrapContainer:{
     flex:.95,
-    // padding:10,
     justifyContent:'center',
     alignItems:'center'
 
@@ -84,7 +78,6 @@ const styles = StyleSheet.create({
     borderWidth: .5,
     padding:10,
     backgroundColor:'#f2f2f2',
-    // marginHorizontal:20,
     marginTop: '2%',
   },
   textInput: {

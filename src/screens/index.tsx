@@ -3,8 +3,6 @@ import List from '../components/list'
 import { useSelector } from 'react-redux';
 
 export default function App({navigation}) {
-  const se =useSelector(state=>state.task)
-  console.log('se',se)
   return (
     <View style={styles.container}>
       <View style={styles.wrapContainer}>
@@ -25,8 +23,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
   },
   wrapContainer:{
     flex:.95,
